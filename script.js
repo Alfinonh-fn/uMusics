@@ -14,6 +14,27 @@ window.onload = () =>{
                     duration :'03:49' 
                 },
                 {
+                    name : 'Kartonyono',
+                    artist : 'Nella kharisma',
+                    image :'medot_janji.jpg',
+                    songUrl :'medot_janji.mp3',
+                    duration :'04:31' 
+                },
+                {
+                    name : 'Huwa alquran',
+                    artist : 'Maher Zain',
+                    image :'huwaquran.jpeg',
+                    songUrl :'maher_zain_huwa_quran.mp3',
+                    duration :'04:15' 
+                },
+                {
+                    name : 'Meraih bintang(Arab)',
+                    artist : 'Aseel Omran',
+                    image :'aseel.jpeg',
+                    songUrl :'meraihbintangarab.mp3',
+                    duration :'04:01' 
+                },
+                {
                     name : 'Faded',
                     artist : 'Alan Walker',
                     image :'Faded.jpg',
