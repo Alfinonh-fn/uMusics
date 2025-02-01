@@ -73,10 +73,10 @@ window.onload = () =>{
                     duration :'05:38' 
                 },
                 {
-                    name : 'Yaara',
-                    artist : 'Arnab Dutta',
-                    image :'Yaara.jpg',
-                    songUrl :'Yaara.mp3',
+                    name : 'Kedagar dagar',
+                    artist : 'Verrallie',
+                    image :'FB_IMG_1738068142369.jpg',
+                    songUrl :'Kedagar dagar.mp3',
                     duration :'05:47' 
                 },
                 {
