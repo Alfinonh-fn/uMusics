@@ -12,7 +12,7 @@
 <body>
 
     <section class="loading-sec">
-        l<div class="loading-sec__logo"></div>
+        <div class="loading-sec__logo"></div>
             <h1 class="nav-sec__logo-inner">
                 <span class="nav-sec__logo-inner--text loading-sec__text">
                     <span class="loading-sec__u">u</span>Musics 
@@ -23,14 +23,9 @@
             </h1>
         </div>
         <h1 class="loading-sec__wait-text">Wait resources are loading.</h1>
-        <p class="loading-sec__legal">Copyright @Alfinonh</p>
+        <p class="loading-sec__legal">Copyright @Kangskuyt</p>
     </section> 
-   
-    <!-- Created Two Layout-Grid -->
     <main class="main">
-
-            <!-- Navigation Section Start -->
-
             <div class="navOpen-btn">
                 <span class="material-icons">
                     menu
@@ -74,20 +69,14 @@
                     </ul>
     
                     <footer class="nav-sec__copyright">
-                        <p class="copyright__text"> Copyright @ Alfinonh</p>
+                        <p class="copyright__text"> Copyright @ Kangskuyt</p>
                     </footer>
 
                 </div>
 
                 
             </section>
-             <!-- Navigation Section End -->
-
-            <!-- Musics Section Start -->
             <section class="music-sec"> 
-
-                <!-- Top Cover Start-->
-
                 <div class="cover">
                      <img src="img/Shigatsu.jpg" alt="" class="cover__img" id="recommended-image">
                      <div class="cover__text">
@@ -100,16 +89,9 @@
                         </a>
                      </div>
                  </div>
-
-                 <!-- Top Cover End-->
-
-            
                  <div class="music-con">
 
                     <h1 class="heading-sec">My Favorites</h1>
-
-                    <!-- Music List Scroll Start-->
-
                     <div class="music-con__list scroll-bar-hide">
 
                             <!-- <div class="music-con__item">
@@ -127,12 +109,7 @@
                                 </div>
                                 
                             </div> -->
-
-                            
-
                     </div>
-
-                      <!-- Music List Scroll End-->
                  </div>
 
                  <div class="music-hor music-con">
@@ -162,16 +139,9 @@
                         </div>                            -->
 
                     </div>
-        
-
                 </div>
-
                 <div class="music-con">
-
                     <h1 class="heading-sec">Sad Songs</h1>
-
-                    <!-- Music List Scroll Start 2-->
-
                     <div class="music-con__list scroll-bar-hide">
 
                             <!-- <div class="music-con__item">
@@ -191,38 +161,25 @@
                             </div>                             -->
 
                     </div>
-
-                      <!-- Music List Scroll End 2-->
                  </div>
-            
             </section>
-            <!-- Musics Section End -->
 
     </main>
-
-    <!-- Music { Play Btn  /  Progress Bar / }  Start-->
-
     <section class="music-controller">
-
         <div class="music-controller__progress-bar">
             <span class="music-controller__progress-bar-fill"></span>
         </div>
-
         <div class="music-controller__list">
-
                 <div class="music-controller__item">
                     <img src="img/Faded.jpg" alt="" class="music-controller__img audio-image">
                     <h3  class="music-artist-name audio-name" style="width:9rem;">Let me love</h3>
                 </div>
-
                 <div class="music-controller__item"> 
-
                     <div class="music-controller__btn audio-prev-btn">
                         <span class="material-icons">
                             skip_previous
                         </span>
                     </div>
-
                     <div class="music-controller__btn audio-play-pause-btn">
                         <span class="material-icons">
                             play_circle_filled
@@ -232,12 +189,9 @@
                         <span class="material-icons">
                             skip_next
                         </span>
-    
                     </div>
-                   
                 </div>
                 <div class="music-controller__item phone-disable">
-
                     <div class="music-controller__btn audio-shuffle">
                         <span class="material-icons">
                             shuffle
@@ -256,27 +210,17 @@
 
                 </div>
         </div>
-
-
-
     </section>
 
-  <!--- Open Music Player-->
-
     <section class="audio-player" id="audio-player-fullscreen">
-        
 
         <div class="audio-player__wrapper">
-
             <img src="img/Yaara.jpg" alt="" class="audio-player__img audio-image">
-          
             <div class="audio-player__text">
                 <h3 class="heading-3 audio-name">   Gunaah  </h3>
                 <p class="music-artist-name audio-singer-name">  Max Glover, Carl Brown </p>    
             </div>  
-
            <div class="audio-player__item audio-player__item--1">
-
                 <div class="audio-player__btn-top audio-shuffle">
                     <span class="material-icons">
                         shuffle
@@ -292,7 +236,6 @@
                         repeat
                     </span>
                 </div>
-
            </div>
 
 
@@ -324,17 +267,13 @@
                         skip_next
                     </span>
                 </div>
-
            </div>
-   
         </div>
-
     </section>
     
      <audio id="audio" class="audio" style="display: none;">
         <source src="mp3/Gunaah.mp3"></source>
     </audio>
-    <!-- Including External JavaScript File Here -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js" integrity="sha256-eVNjHw5UeU0jUqPPpZHAkU1z4U+QFBBY488WvueTm88=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>

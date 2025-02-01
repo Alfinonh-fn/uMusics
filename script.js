@@ -1,10 +1,6 @@
 'use strict'
-
 window.onload = () =>{
-
     const getSongs = (()=>{
-
-
             const songs = [
                 {
                     name : 'Ignite',
@@ -140,28 +136,21 @@ window.onload = () =>{
                 
             ]
 
-        
-
             let getRecommendedSong =[{}];
             const randomValue = Math.floor(Math.random() * animeSong.length);
             getRecommendedSong[0] = animeSong[randomValue];
-    
-            
-
             return {
             songs,
             animeSong,
             getRecommendedSong
             }
-
-
-    })();
+        }
+    )
+();
 
 
 
     const DOMStrings = (()=>{
-        
-
         const DOMString = {
             navMenu : document.querySelector('.nav-sec'),
             navOpenBtn : document.querySelector('.navOpen-btn'),
@@ -195,20 +184,15 @@ window.onload = () =>{
             recommendedPlayBtn : document.getElementById('recommended-play-btn'),
         
         }
-
-
         return{
             DOMString,
             audioBtnCtrl,
 
         }
-
-
     })();
 
 
     const AnimationClass = (()=>{
-
         const nav = {
                 open : 'nav-open-animation',
                 close : 'nav-close-animation'
@@ -220,32 +204,17 @@ window.onload = () =>{
 
     })();
 
-
     const UIController = ((DOMStrings,AnimationClass,getSongs)=>{
-
-
-        
-
-                
             const DOM = DOMStrings.DOMString , 
                         navMenu = DOM.navMenu ,
                         navBtn = DOM.navOpenBtn , 
                         slider = DOM.slider , 
                         songs = getSongs.songs;
-
-            // Set Cover
-
-
             DOM.recommendedImage.src = `img/${getSongs.getRecommendedSong[0].image}`
-
-            
             const swipeUp = new Hammer(DOM.openFullScreen);
             swipeUp.get('swipe').set({direction : Hammer.DIRECTION_ALL});
-
             const swipeDown = new Hammer(document.body);
             swipeDown.get('swipe').set({direction : Hammer.DIRECTION_ALL});
-
-    
             swipeUp.on('swipeup',() =>{
                 navOpenAndClose(false)
                 DOM.openFullScreen.setAttribute('style','height : 100% ; opacity : 0;z-index:8')
@@ -256,26 +225,16 @@ window.onload = () =>{
                 DOM.openFullScreen.setAttribute('style','height : 4.6rem; opacity : 1;z-index:10')
                 DOM.audioFullScreen.setAttribute('style','height :0 ; opacity :0;z-index:8')
             });
-            
-            // Navigation Start 
-            
+
             navBtn.addEventListener('click', () => navOpenAndClose(true));
-
             DOM.musicContainer.addEventListener('click', () => navOpenAndClose(false));
-
             DOM.openFullScreen.addEventListener('click',() => navOpenAndClose(false));
-        
             DOM.musicContainer.addEventListener('touchstart',() => navOpenAndClose(false));
-
             DOM.openFullScreen.addEventListener('touchstart',() => navOpenAndClose(false));
-        
             const navOpenAndClose = (isClose) =>{
-
                 const isNavBtnVisible = window.getComputedStyle(navBtn).visibility;
-                
                 if(window.getComputedStyle(navMenu).width === '0px' && isClose ==false)
                     return;
-
                 if(isNavBtnVisible === 'visible'){
                     navMenu.classList.remove(AnimationClass.nav.open);
                     navMenu.classList.remove(AnimationClass.nav.close);
@@ -284,20 +243,10 @@ window.onload = () =>{
                 }
         
             }
-            // Navigation End 
-
-            // Music Horizonatal Slider Start
-
-        
             let isDown, startX, scrollLeft;
-
             isDown = false;
-        
-        
             slider.forEach(btn => btn.addEventListener('mouseleave', () => isDown = false ));
-        
             slider.forEach( btn => btn.addEventListener('mouseup', () => isDown = false ));
-
             slider.forEach( btn => {
                 btn.addEventListener('mousedown', (e) => {
                     isDown = true;
@@ -305,8 +254,6 @@ window.onload = () =>{
                     scrollLeft = btn.scrollLeft;
                 });
             });
-        
-        
             slider.forEach( btn => {
                 btn.addEventListener('mousemove', (e) => {
                     if(!isDown) return;
@@ -316,15 +263,7 @@ window.onload = () =>{
                     btn.scrollLeft = scrollLeft - walk;
                 });
             });
-
-            // Music Horizonatal Slider Start 
-
-
-            // Add Song UI 
-
-
             const addListUI = ( listChange , i)  =>{ 
-
                 const content = `<div class="music-con__item">
                                 <div class="music-con__img">
                                     <img src="img/${songs[i].image}" alt="">
@@ -339,23 +278,15 @@ window.onload = () =>{
                                     <p class="music-artist-name">  ${songs[i].artist} </p>
                                 </div>
                             </div>`;
-
                 DOM.audioListParent[listChange].insertAdjacentHTML('beforeend',content); 
             }
-
                 for(let i = 0 ; i < 6 ; i++ ){
                         addListUI(0 , i);
                 }
-
                 for(let i = 6 ; i < getSongs.songs.length ; i++ ){
                     addListUI(1 , i);
             }
-    
-            
-            // List UI Added
-
             for(let i in getSongs.animeSong){
-
                     const content = `<div class="music-hor__item">
                                         <div class="music-hor__item-inner">
                                             <img src="img/${getSongs.animeSong[i].image}" class="music-hor__img">
@@ -365,26 +296,14 @@ window.onload = () =>{
                                             <p class="music-hor__music-duration">${getSongs.animeSong[i].duration}</p>                  
                                         </div>
                                     </div> `;
-                    
                     DOM.audioHorListParent.insertAdjacentHTML('beforeend',content); 
-
             }
-
-
-
     })(DOMStrings,AnimationClass,getSongs);
-
-
-    // Music Contol Model 
-
-
     const musicController = ((DOMStrings,getSongs) => {
-
         const DOM = DOMStrings.DOMString , player = DOM.audioPlayer , audioCtrl = DOMStrings.audioBtnCtrl ,
         musicHoriList  =  document.querySelectorAll('.music-hor__item'),
         musicItems = document.querySelectorAll('.music-con__item') ;
         let currenPlayingSongIndex = 0 , currenListObject = getSongs.songs;
-
         const volume = {
             off : `<span class="material-icons">
                     volume_off
@@ -393,9 +312,7 @@ window.onload = () =>{
                     volume_up
                 </span>`
         },
-        
         HTML = {
-
             pause : `<span class="material-icons">
                     pause_circle_filled
                     </span>
@@ -404,9 +321,6 @@ window.onload = () =>{
                         play_circle_filled
                     </span> `
         }
-        
-        
-
         DOM.audioProgressBar.forEach(btn =>{
                 btn.addEventListener("click", function seek(e){
                     let percent = e.offsetX / this.offsetWidth;
@@ -415,34 +329,22 @@ window.onload = () =>{
                     DOM.audioProgressBar.value = percent / 100;
                 });
         });
-
         player.addEventListener('timeupdate', ()=>{
             var duration =  player.duration;
-        
             if (duration > 0) {
                 DOM.audioProgressBarFill.forEach( btn => btn.style.width = ((player.currentTime / duration)*100) + "%" );
             }
-
             const d = player.currentTime;
             let hours = Math.floor(d / 3600);
             let minutes = Math.floor(d % 3600 / 60);
             let seconds = Math.floor(d % 3600 % 60);
-
             hours = (hours === 0) ? '' : (zeroPrefixer(hours) + ' : ');
-
             audioCtrl.audioCurrentDuration.textContent = hours + zeroPrefixer(minutes) + ' : ' + zeroPrefixer(seconds);
-    
         });
-
         const zeroPrefixer = n => ( n < 10) ? ('0'+n) : n ;
-
-
         audioCtrl.playPauseBtn.forEach( btn =>{
             btn.addEventListener('click', () => audioCtrl.audioPlayer.paused ?  audioPlayEnable() : audioPlayDisable() );
         });
-
-        
-
         const audioPlayEnable = () =>{
             audioCtrl.playPauseBtn.forEach( btn => btn.innerHTML = HTML.pause);
             var playPromise  = audioCtrl.audioPlayer.play();
@@ -451,15 +353,10 @@ window.onload = () =>{
                 }).catch(error => { });
             }
         };
-
         const audioPlayDisable = () =>{
             audioCtrl.playPauseBtn.forEach( btn => btn.innerHTML = HTML.play);
             audioCtrl.audioPlayer.pause();
         };
-
-
-        //Set Data Current Playing Music
-
         const updateAudio = (index) =>  {
                 const songObject = currenListObject[index];
                 audioCtrl.audioName[0].textContent = songObject.name;
@@ -473,10 +370,6 @@ window.onload = () =>{
                 audioPlayEnable();    
                 
         }
-
-
-
-
         musicItems.forEach( (item, index) => {
                 item.addEventListener('click',()=>{
                     currenListObject = getSongs.songs;
@@ -484,9 +377,6 @@ window.onload = () =>{
                     updateAudio(index);    
                 });
         });
-
-        
-
         musicHoriList.forEach( (item, index) => {
             item.addEventListener('click',()=>{
                 currenListObject = getSongs.animeSong;
@@ -494,26 +384,18 @@ window.onload = () =>{
                 updateAudio(index);  
             });
         });
-
-
-
         audioCtrl.recommendedPlayBtn.addEventListener('click',()=>{
             currenListObject = getSongs.getRecommendedSong;
             currenPlayingSongIndex = 0;
             updateAudio(0)
         })
-
-
-
         audioCtrl.nextBtn.forEach( btn =>{
             btn.addEventListener('click',() =>{
                 if( currenPlayingSongIndex === currenListObject.length-1)
                     currenPlayingSongIndex = -1;      
                 updateAudio(++currenPlayingSongIndex);
             });  
-
         });
-
         audioCtrl.prevBtn.forEach( btn =>{
             btn.addEventListener('click',() =>{
                 if( currenPlayingSongIndex === 0)
@@ -521,9 +403,6 @@ window.onload = () =>{
                 updateAudio(--currenPlayingSongIndex);
             });
         });
-
-
-    
         audioCtrl.audioPlayer.addEventListener("ended",() =>{
             if(audioCtrl.audioRepeat[0].className.includes('audioSuffle')){
                 updateAudio(currenPlayingSongIndex) ;
@@ -533,9 +412,6 @@ window.onload = () =>{
                     currenPlayingSongIndex = -1;   
             updateAudio(++currenPlayingSongIndex) 
         });
-
-    
-
         audioCtrl.audioVolume.forEach( btn =>{
             btn.addEventListener('click',() =>{
             const isMuted = audioCtrl.audioPlayer.muted;
@@ -546,14 +422,11 @@ window.onload = () =>{
             navigator.vibrate(100);
             });
         });
-
         let isShuffleModeEnable = false;
-
         audioCtrl.audioShuffle.forEach( btn =>{
             btn.addEventListener('click',() =>{
                 audioCtrl.audioShuffle[0].classList.toggle('audioSuffle');
                 audioCtrl.audioShuffle[1].classList.toggle('audioSuffle');
-                
                 if(isShuffleModeEnable){
                     isShuffleModeEnable = false;
                     if( currenListObject.length === getSongs.songs.length)
@@ -562,62 +435,40 @@ window.onload = () =>{
                         currenListObject = getSongs.animeSong;
                     else if( currenListObject.length === getSongs.getRecommendedSong.length)
                         currenListObject = getSongs.getRecommendedSong;
-            
                 }else{
                     currenListObject = shuffle(currenListObject);
                     isShuffleModeEnable = true;
                 }
-
             });
         });
-
-
         function shuffle(array) {
             let currentIndex = array.length,
                 temporaryValue, randomIndex,
                 newArray = new Array(...array);
-            
-            // While there remain elements to shuffle...
             while (0 !== currentIndex) {
-        
-            // Pick a remaining element...
+
             randomIndex = Math.floor(Math.random() * currentIndex);
             currentIndex -= 1;
-        
-            // And swap it with the current element.
             temporaryValue = newArray[currentIndex];
             newArray[currentIndex] = newArray[randomIndex];
             newArray[randomIndex] = temporaryValue;
             }
-        
             return newArray;
         }
-        
-
         audioCtrl.audioRepeat.forEach( btn =>{
             btn.addEventListener('click',() =>{
                 audioCtrl.audioRepeat[0].classList.toggle('audioSuffle');
                 audioCtrl.audioRepeat[1].classList.toggle('audioSuffle');
             })
         })
-
-
-
         updateAudio(0); //set First Song
         audioPlayDisable();
-
     })(DOMStrings,getSongs);
-
-
     setTimeout(() => {
-
         const loader  = document.querySelector('.loading-sec');
         loader.setAttribute('style','opacity : 0');
         setTimeout(() => {
             loader.remove();
-        }, 1000);   
-        
+        }, 1000);
     }, 3000);
- 
-
 }
